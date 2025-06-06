@@ -5,6 +5,8 @@ import MilkPage from '../views/MilkPage.vue';
 import CheesePage from '../views/CheesePage.vue';
 import FruitPage from '../views/FruitPage.vue';
 
+
+
 const routes = [
   {
     path: '/',

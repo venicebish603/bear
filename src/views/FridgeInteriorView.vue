@@ -1,7 +1,7 @@
 <template>
   <div class="fridge-interior-view">
     <img
-      src="/images/fridge-interior-background.png"
+      :src="getPublicImagePath('fridge-interior-background.png')"
       alt="冰箱内部背景"
       class="fridge-background"
     />
@@ -12,7 +12,7 @@
       <img
         v-for="food in foodItems"
         :key="food.type"
-        :src="food.src"
+        :src="getPublicImagePath(food.imgName)"
         :alt="food.alt"
         class="food-item"
         :style="{ left: food.left, top: food.top, width: food.width }"
@@ -28,12 +28,17 @@
 import { useRouter } from 'vue-router';
 
 const router = useRouter();
+const base = import.meta.env.BASE_URL;
+
+const getPublicImagePath = (imageName: string) => {
+  return `${base}images/${imageName}`;
+}
 
 // 定义食物数据数组，包含图片路径、类型、alt文本和定位信息
 const foodItems = [
   {
     type: 'milk',
-    src: '/images/milk.png',
+    imgName: 'milk.png',
     alt: '牛奶',
     left: '15%', // 相对于 food-items-placement-area 的左边距
     top: '10%',  // 相对于 food-items-placement-area 的上边距
@@ -41,7 +46,7 @@ const foodItems = [
   },
   {
     type: 'cheese',
-    src: '/images/cheese.png',
+    imgName: 'cheese.png',
     alt: '奶酪',
     left: '60%',
     top: '25%',
@@ -49,7 +54,7 @@ const foodItems = [
   },
   {
     type: 'fruit',
-    src: '/images/fruit.png',
+    imgName: 'fruit.png',
     alt: '水果',
     left: '30%',
     top: '55%',

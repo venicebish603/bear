@@ -21,7 +21,7 @@
         src="https://open.spotify.com/embed/track/6Hk2Y59I89sLbyOyOketHZ?utm_source=generator"
         width="100%"
         height="152" frameBorder="0"
-        allowfullscreen=""
+        allowfullscreen="true"
         allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
         loading="lazy"
       ></iframe>

@@ -240,9 +240,7 @@ const goBackToFridge = () => {
   margin-top: auto; /* 确保时间在底部 */
 }
 
-.message-time {
-  /* 可以在这里调整时间文字样式 */
-}
+
 
 .delete-button {
   background: none;

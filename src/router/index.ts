@@ -4,6 +4,7 @@ import FridgeInteriorView from '../views/FridgeInteriorView.vue';
 import MilkPage from '../views/MilkPage.vue';
 import CheesePage from '../views/CheesePage.vue';
 import FruitPage from '../views/FruitPage.vue';
+import SaucePage from '@/views/SaucePage.vue';
 
 
 
@@ -33,6 +34,11 @@ const routes = [
     name: 'fruitPage',
     component: FruitPage,
   },
+  {
+    path: '/sauce',
+    name: 'saucePage',
+    component: SaucePage,
+  }
   // 后面可以添加404页面
 ];
 

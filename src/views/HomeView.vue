@@ -58,10 +58,10 @@ const handleBearClick = () => {
 
 .bear-image {
   position: absolute;
-  left: 20%;
+  left: 20vm;
   top: 50%;
   transform: translateY(-50%);
-  width: 200px;
+  width: 25vmax;
   height: auto;
   cursor: pointer;
   z-index: 2; /* 确保熊在冰箱上方 */
@@ -70,10 +70,10 @@ const handleBearClick = () => {
 
 .fridge-image {
   position: absolute;
-  right: 20%;
+  right: 10%;
   top: 50%;
   transform: translateY(-50%);
-  width: 250px; /* 示例宽度，根据你的图片调整 */
+  width: 39vmax; /* 示例宽度，根据你的图片调整 */
   height: auto;
   z-index: 1; /* 冰箱在熊下方 */
   /* 为了切换时的平滑效果，可以添加一个透明度过渡 */

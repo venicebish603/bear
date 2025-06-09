@@ -1,12 +1,12 @@
 <template>
   <div class="fridge-interior-view">
-    <img
+    <!-- <img
       :src="getPublicImagePath('fridge-interior-background.png')"
       alt="冰箱内部背景"
       class="fridge-background"
-    />
+    /> -->
 
-    <h1 class="page-title">冰箱内部，好多吃的！</h1>
+    <h2 class="page-title">食物会到处乱飞的冰箱<br>说明了冰箱狗熊乱扔食物！！</h2>
 
     <div class="food-items-placement-area">
       <img
@@ -26,6 +26,7 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import { ref, computed } from 'vue';
 
 const router = useRouter();
 const base = import.meta.env.BASE_URL;
@@ -33,42 +34,41 @@ const base = import.meta.env.BASE_URL;
 const getPublicImagePath = (imageName: string) => {
   return `${base}images/${imageName}`;
 }
-
+const fridgeBgUrl = computed(() => getPublicImagePath('fridge-interior-background.png'));
 // 定义食物数据数组，包含图片路径、类型、alt文本和定位信息
 const foodItems = [
   {
     type: 'milk',
     imgName: 'milk.png',
     alt: '牛奶',
-    left: '15%', // 相对于 food-items-placement-area 的左边距
-    top: '10%',  // 相对于 food-items-placement-area 的上边距
-    width: '100px' // 食物图片宽度
+    left: '29%', // 相对于 food-items-placement-area 的左边距
+    top: '12%',  // 相对于 food-items-placement-area 的上边距
+    width: '8%' // 食物图片宽度
   },
   {
     type: 'cheese',
     imgName: 'cheese.png',
     alt: '奶酪',
-    left: '60%',
-    top: '25%',
-    width: '80px'
+    left: '61%',
+    top: '32%',
+    width: '8%'
   },
   {
     type: 'fruit',
     imgName: 'fruit.png',
     alt: '水果',
     left: '30%',
-    top: '55%',
-    width: '110px'
+    top: '23%',
+    width: '9%'
   },
-  // 添加更多食物，并调整它们的 left, top 和 width 属性以符合冰箱内部的布局
-  // {
-  //   type: 'jar', // 示例：可以添加一个新食物类型，例如罐子
-  //   src: '/images/jar.png', // 假设你有 jar.png 图片
-  //   alt: '一罐果酱',
-  //   left: '75%',
-  //   top: '15%',
-  //   width: '90px'
-  // },
+  {
+    type: 'sauce', // 示例：可以添加一个新食物类型，例如罐子
+    imgName: 'sauce.png', // 假设你有 jar.png 图片
+    alt: '一罐辣酱',
+    left: '102%',
+    top: '38%',
+    width: '6%'
+  },
   // {
   //   type: 'vegetable', // 示例：蔬菜
   //   src: '/images/vegetable.png', // 假设你有 vegetable.png 图片
@@ -90,65 +90,64 @@ const goBackToHome = () => {
 
 <style scoped>
 .fridge-interior-view {
-  position: relative; /* 允许内部元素绝对定位 */
+  position: relative;
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: #e0f7fa; /* 默认背景色 */
-  overflow: hidden; /* 防止溢出 */
+
+  /* 将冰箱背景图设置为这个容器的背景 */
+  background-image: v-bind("`url(${getPublicImagePath('fridge-interior-background.png')})`"); /* 动态绑定背景图 */
+  background-size: contain;   /* 让背景图按比例缩放并完全显示 */
+  background-repeat: no-repeat; /* 不重复 */
+  background-position: center;  /* 背景图居中显示 */
+  background-color: #e0f7fa; /* 默认背景色（用于填充背景图留下的空白区域） */
+  overflow: hidden;
 }
 
-.fridge-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain; /* 或者 cover，取决于你的背景图和期望效果 */
-  z-index: 0; /* 确保背景图在最底层 */
-  /* 如果你的背景图是按比例缩放，并希望食物在其上方精确覆盖，
-     可能需要将 fridg-background 设为 contain，然后调整 food-items-placement-area 的大小和位置 */
-}
 
 .page-title {
-  z-index: 2; /* 确保标题在最上层，高于背景和食物 */
+  z-index: 2;
   color: #333;
-  margin-bottom: 20px; /* 调整标题与食物区域的距离 */
-  position: absolute; /* 绝对定位标题，让它不影响食物定位区域 */
-  top: 5%; /* 调整标题位置 */
+  margin-bottom: 30px;
+  position: absolute;
+  /* 调整标题位置，使其在冰箱背景图的顶部区域 */
+  top: 2vh; /* 使用 vh 保持相对高度 */
+  left: 50%;
+  transform: translateX(-50%); /* 水平居中 */
+  white-space: nowrap; /* 防止标题文字换行 */
+  font-size: 2em; /* 调整字体大小 */
 }
 
-/* 新的容器：用于绝对定位食物图片 */
 .food-items-placement-area {
-  position: absolute; /* 相对于 .fridge-interior-view 绝对定位 */
-  width: 60%; /* 假设你的冰箱内部图片占据屏幕宽度的大约60% */
-  height: 80%; /* 假设你的冰箱内部图片占据屏幕高度的大约80% */
+  position: absolute;
+  width: 40vw;
+  height: 60vh;
+
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%); /* 水平垂直居中这个区域 */
-  /* background-color: rgba(255, 0, 0, 0.1); /* 临时背景色，用于调试区域大小和位置 */
-  z-index: 1; /* 确保食物在这个区域内，并高于背景 */
-  pointer-events: auto; /* 确保区域内的点击事件有效 */
+  transform: translate(-50%, -50%); /* 先居中整个区域 */
+
+  z-index: 1;
+  pointer-events: auto;
 }
 
+/* 食物图片样式和 back-button 保持不变 */
 .food-item {
-  position: absolute; /* 使食物图片可以根据 left/top 精确定位 */
-  height: auto; /* 保持图片比例 */
+  position: absolute;
+  height: auto;
   cursor: pointer;
   transition: transform 0.2s ease-in-out;
-  /* 初始定位在数据中指定，这里只写共用样式 */
-  /* 注意：left/top 是相对于其父容器 .food-items-placement-area 的 */
 }
 
 .food-item:hover {
-  transform: scale(1.1); /* 鼠标悬停时放大 */
+  transform: scale(1.1);
 }
 
 .back-button {
-  margin-top: 20px; /* 按钮与下方内容的间距 */
+  margin-top: 20px;
   padding: 12px 25px;
   font-size: 18px;
   background-color: #4caf50;
@@ -157,9 +156,9 @@ const goBackToHome = () => {
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  z-index: 2; /* 确保按钮在最上层 */
-  position: absolute; /* 绝对定位按钮，让它不影响食物定位区域 */
-  bottom: 5%; /* 调整按钮位置 */
+  z-index: 2;
+  position: absolute;
+  bottom: 5vh; /* 使用 vh 保持相对高度 */
 }
 
 .back-button:hover {

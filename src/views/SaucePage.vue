@@ -1,7 +1,7 @@
 <template>
   <div class="sauce-page">
-    <h1>为你播放特别的视频！</h1>
-    <p class="description">希望这个视频能给你带来快乐~</p>
+    <h1>LISTEN</h1>
+    <p class="description">I GOT THAT SAUCE</p>
 
     <div class="video-container">
       <iframe
